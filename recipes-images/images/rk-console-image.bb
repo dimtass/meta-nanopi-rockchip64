@@ -14,11 +14,14 @@ IMAGE_LINGUAS = "en-us"
 
 BUSYBOX_SPLIT_SUID = "0"
 
-# Most of the package groups are located in the classes/package-groups.inc
-IMAGE_INSTALL += " \
+SDK_CONFLICT_PACKAGES = " \
     busybox \
     bash \
     pkgconfig \
+"
+
+# Most of the package groups are located in the classes/package-groups.inc
+IMAGE_INSTALL += " \
     default-modules \
     merge-files \
     udev-automount \
@@ -33,4 +36,5 @@ IMAGE_INSTALL += " \
     u-boot-fw-utils \
     kernel-base \
     kernel-modules \
+	${@bb.utils.contains('REMOVE_SDK_CONFLICT_PKGS', '0', '${SDK_CONFLICT_PACKAGES}', '', d)} \
 "
