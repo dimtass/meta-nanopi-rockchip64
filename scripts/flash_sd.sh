@@ -1,6 +1,6 @@
 #!/bin/bash
-: ${MACHINE:=}
-: ${IMAGE:=}
+: ${MACHINE:=nanopi-neo3}
+: ${IMAGE:=console}
 : ${SD:=$1}
 : ${IMAGE_FILE:=build/tmp/deploy/images/${MACHINE}/rk-${IMAGE}-image-${MACHINE}.wic.bz2}
 
