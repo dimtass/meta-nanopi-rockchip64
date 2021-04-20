@@ -23,7 +23,7 @@ Then `git clone` this repo inside with `poky` and `meta-openembedded`.
 
 ```sh
 cd sources
-git clone git@bitbucket.org:dimtass/meta-allwinner-hx.git
+git clone https://bitbucket.org/dimtass/meta-nanopi-rockchip64.git
 git clone --depth 1 -b dunfell git://git.yoctoproject.org/poky
 git clone --depth 1 -b dunfell git@github.com:openembedded/meta-openembedded.git
 ```
@@ -33,8 +33,8 @@ git clone --depth 1 -b dunfell git@github.com:openembedded/meta-openembedded.git
 #### Setting the environment
 Then from the `top` directory that includes the sources run this command:
 ```sh
-ln -s sources/meta-allwinner-hx/scripts/setup-environment.sh .
-ln -s sources/meta-allwinner-hx/scripts/flash_sd.sh .
+ln -s sources/meta-nanopi-rockchip64/scripts/setup-environment.sh .
+ln -s sources/meta-nanopi-rockchip64/scripts/flash_sd.sh .
 ```
 
 Then your top dir contects should look like this:
@@ -100,11 +100,11 @@ This will build a console-only image.
 ## Build the SDK
 There's a known issue that some bb recipes that are used while the SDK is built
 conflict with some packages. In this BSP the packages that are conflict are the
-listed in the `SDK_CONFLICT_PACKAGES` variable, which is located in `meta-allwinner-hx/classes/package-groups.inc`.
+listed in the `SDK_CONFLICT_PACKAGES` variable, which is located in `meta-nanopi-rockchip64/classes/package-groups.inc`.
 Therefore, in case you add more packages in the image and the SDK is failing, then
 you can add them in the `SDK_CONFLICT_PACKAGES`.
 
-Then, when you setup the environment to build the image using the `meta-allwinner-hx/scripts/setup-environment.sh`
+Then, when you setup the environment to build the image using the `meta-nanopi-rockchip64/scripts/setup-environment.sh`
 script, you can control if those packages will be added with the `REMOVE_SDK_CONFLICT_PKGS`
 variable in the `local.conf`. By default this is set to `0`, but when you build the
 SDK you need to set that to `1`.
@@ -135,9 +135,6 @@ verbosity=d
 overlays=rockchip-i2c7 rockchip-spi-spidev
 param_spidev_spi_bus=0
 ```
-
-Some overlays (like the `spi-spidev`) get parameters as shown above. For more details
-on the allwinner overlays always refer to the decumentation [here](https://docs.armbian.com/Hardware_Allwinner_overlays/)
 
 ## Flashing the image
 After the image is build, you can use `bmaptool` to flash the image on your SD card.
